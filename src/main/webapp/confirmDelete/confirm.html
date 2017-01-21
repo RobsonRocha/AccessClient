@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+<html ng-app="app" lang="pt-br">
+<head>
+<meta charset="utf-8">
+</head>
+
+<div class="modal-dialog">
+	<div class="modal-header">
+		<h2>{{modalOptions.headerText}}</h2>
+	</div>
+	<div class="modal-body">
+		<p>{{modalOptions.bodyText}}</p>
+	</div>
+	<div class="modal-footer">
+		<button class="btn btn-primary btn-ok"
+			data-ng-click="modalOptions.ok();">{{modalOptions.actionButtonText}}</button>
+		<button type="button" class="btn btn-default"
+			data-ng-click="modalOptions.close()">{{modalOptions.closeButtonText}}</button>
+	</div>
+</div>
+
+</html>

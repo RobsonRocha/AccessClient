@@ -1,0 +1,251 @@
+<!DOCTYPE html>
+<html ng-app="app" lang="pt-br">
+<head>
+<meta charset="utf-8">
+</head>
+<header class="header dark-bg">
+	<!--logo start-->
+    <a href="#/" class="logo">Módulo de <span class="lite">Solicitação</span></a>
+    <!--logo end-->
+    
+                <div class="top-nav notification-row">                
+                <!-- notificatoin dropdown start-->
+                <ul class="nav pull-right top-menu">
+                    
+                    <!-- task notificatoin start -->
+                    <li id="task_notificatoin_bar" class="dropdown" ng-if="vm.user.isAdmin">
+                        <a data-toggle="dropdown" class="dropdown-toggle" href=" ">
+                            <i class="icon-task-l"></i>
+                            <span class="badge bg-important">{{vm.countRequestAssociations+vm.countRequestDesassociations}}</span>
+                        </a>
+                        <ul class="dropdown-menu extended tasks-bar">
+                            <div class="notify-arrow notify-arrow-blue"></div>
+                            <li>
+                                <p class="blue" ng-if="vm.countRequestAssociations > 0 ">Você tem {{vm.countRequestAssociations}} <span ng-if="vm.countRequestAssociations == 1">associação pendente</span>
+                                	<span ng-if="vm.countRequestAssociations > 1">associações pendentes</span>
+                                			</p>
+                                <p class="blue" ng-if="vm.countRequestDesassociations > 0 ">Você tem {{vm.countRequestDesassociations}} <span ng-if="vm.countRequestDesassociations == 1">desassociação pendente</span>
+                                	<span ng-if="vm.countRequestDesassociations > 1">desassociações pendentes</span>
+                            </li>
+                            <li>
+                                <a href="#/">
+                                    <div class="task-info">
+                                        <div class="desc"><span ng-if="vm.countRequestAssociations == 1">Associação</span>
+                                        	<span ng-if="vm.countRequestAssociations > 1 || vm.countRequestAssociations == 0">Associações</span>
+                                        </div>
+                                        <div class="percent">{{vm.countRequestAssociations}}</div>
+                                    </div>
+                                    <div class="progress progress-striped">
+                                        <div class="progress-bar progress-bar-warning" role="progressbar" aria-valuenow="vm.countRequestAssociations" aria-valuemin="0" aria-valuemax="100" style="width: {{vm.countRequestAssociations}}%">
+                                        </div>
+                                    </div>
+                                </a>
+                            </li>
+                            <li>
+                                <a href="#/">
+                                    <div class="task-info">
+                                        <div class="desc"><span ng-if="vm.countRequestDesassociations == 1">Desassociação</span>
+                                        	<span ng-if="vm.countRequestDesassociations > 1 || vm.countRequestDesassociations == 0">Desassociações</span></div>
+                                        <div class="percent">{{vm.countRequestDesassociations}}</div>
+                                    </div>
+                                    <div class="progress progress-striped">
+                                        <div class="progress-bar progress-bar-danger" role="progressbar" aria-valuenow="vm.countRequestDesassociations" aria-valuemin="0" aria-valuemax="100" style="width: {{vm.countRequestDesassociations}}%">
+                                            
+                                        </div>
+                                    </div>
+                                </a>
+                            </li>
+                          </ul>
+                    </li>
+                    <!-- task notificatoin end -->
+                    <!-- inbox notificatoin start-->
+                    <li id="mail_notificatoin_bar" class="dropdown" ng-if="vm.user.isAdmin">
+                        <a data-toggle="dropdown" class="dropdown-toggle" href=" ">
+                            <i class="icon-login-l"></i>
+                            <span class="badge bg-important"></span>
+                        </a>                        
+                        <ul class="dropdown-menu extended logout">
+                            <div class="notify-arrow notify-arrow-blue"></div>
+                            
+                            <li>
+                            	 <li class="eborder-top">
+                                	<a href="#/register"><i class="icon-form-l"></i>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; Cadastrar usuário</a>
+                            	</li>
+                            </li>
+                            <li>
+                            	<li class="eborder-top">
+                                	<a href="#/allUsers"><img src="img/icons/User-Group-32.png"/> &nbsp;&nbsp;&nbsp; Todos os usuários</a>
+                            	</li>
+                            </li>
+                            <li>
+                            	 
+                            </li>
+                                                       
+                        </ul>
+                    </li>
+                    <li id="mail_notificatoin_bar" class="dropdown" ng-if="vm.user.isAdmin">
+                        <a data-toggle="dropdown" class="dropdown-toggle" href=" ">
+                            <i class="icon-circle-arrows-l"></i>
+                            <span class="badge bg-important"></span>
+                        </a>                        
+                        <ul class="dropdown-menu extended logout">
+                            <div class="notify-arrow notify-arrow-blue"></div>
+                            
+                            <li>
+                            	 <li class="eborder-top">
+                                	<a href="#/allAssociations"><img src="img/icons/BipSonomy-128.png" height="30px" width="30px" /></i>&nbsp;&nbsp;&nbsp; Todas as associações</a>
+                            	</li>
+                            </li>
+                            <li>
+                            	<li class="eborder-top">
+                                	<a href="#/newAssociation"><img src="img/icons/Data-Import-32.png"/> &nbsp;&nbsp;&nbsp; Associar</a>
+                            	</li>
+                            </li>
+                            <li>
+                            	 
+                            </li>
+                                                       
+                        </ul>
+                    </li>
+                    <li id="mail_notificatoin_bar" class="dropdown" ng-if="vm.user.isAdmin">
+                        <a data-toggle="dropdown" class="dropdown-toggle" href=" ">
+                            <i class="icon-profile-l"></i>
+                            <span class="badge bg-important"></span>
+                        </a>                        
+                        <ul class="dropdown-menu extended logout">
+                            <div class="notify-arrow notify-arrow-blue"></div>
+                            
+                            <li>
+                            	 <li class="eborder-top">
+                                	<a href="#/newProfile"><img src="img/icons/MindBodyGreen-32.png" /></i>&nbsp;&nbsp;&nbsp; Criar perfil</a>
+                            	</li>
+                            </li>
+                            <li>
+                            	<li class="eborder-top">
+                                	<a href="#/allProfiles"><img src="img/icons/Format-Bullets-01-32.png"/> &nbsp;&nbsp;&nbsp; Todos os perfis</a>
+                            	</li>
+                            </li>
+                            <li>
+                            	 
+                            </li>
+                                                       
+                        </ul>
+                    </li>
+                    <!-- inbox notificatoin end -->
+                    <!-- alert notification start-->
+                    <li id="alert_notificatoin_bar" class="dropdown" ng-if="!vm.user.isAdmin">
+                        <a data-toggle="dropdown" class="dropdown-toggle" href=" ">
+
+                            <i class="icon-bell-l"></i>
+                            <span class="badge bg-important">{{vm.requestAssociations.length+vm.requestDesassociations.length}}</span>
+                        </a>
+                        <ul class="dropdown-menu extended notification">
+                            <div class="notify-arrow notify-arrow-blue"></div>
+                            <li>
+                                <p class="blue" ng-if="(vm.requestAssociations.length+vm.requestDesassociations.length) > 0 ">Você tem {{vm.requestAssociations.length+vm.requestDesassociations.length}} <span ng-if="(vm.requestAssociations.length+vm.requestDesassociations.length) == 1">solcitação pendente</span>
+                                	<span ng-if="(vm.countRequestAssociations+vm.requestDesassociations.length) > 1">solcitações pendentes</span></p>                                
+                            </li>
+                            <li>
+                                <a href="#/requestAssociation">
+                                    <span><img src="img/icons/Message-Add-32.png" /></span> 
+                                    Solicitar associação
+                                    
+                                </a>
+                            </li>
+                            <li>
+                                <a href="#/requestDesassociation">
+                                    <span><img src="img/icons/Message-Delete-32.png" /></span> 
+                                    Solicitar desassociação
+                                </a>
+                            </li>                            
+                        </ul>
+                    </li>
+                    <!-- alert notification end-->
+                    <!-- user login dropdown start-->
+                    <li class="dropdown">
+                        <a data-toggle="dropdown" class="dropdown-toggle" href=" ">
+                            <span class="profile-ava">
+                                <i class="icon_profile"></i>
+                            </span>
+                            <span class="username">{{vm.user.name}}</span>
+                            <b class="caret"></b>
+                        </a>
+                        <ul class="dropdown-menu extended logout">
+                            <div class="log-arrow-up"></div>
+                            <li class="eborder-top">
+                                <a href="#/changePassword"><i class="icon_key_alt"></i> Alterar senha</a>
+                            </li>
+                            <li>
+                                <a href="#/login"><img src="img/icons/Media-Start-48.png" height="30px" width="30px" /> Sair</a>
+                            </li>
+                        </ul>
+                    </li>
+                    <!-- user login dropdown end -->
+                </ul>
+                <!-- notificatoin dropdown end-->
+            </div>
+    
+<!-- <nav class="navbar navbar-default"> -->
+<!-- 	<div class="container-fluid"> -->
+<!-- 		<div class="navbar-header"> -->
+<!-- 			<button type="button" class="navbar-toggle collapsed" -->
+<!-- 				data-toggle="collapse" data-target="#bs-example-navbar-collapse-1" -->
+<!-- 				aria-expanded="false"> -->
+<!-- 				<span class="sr-only">Toggle navigation</span> <span -->
+<!-- 					class="icon-bar"></span> <span class="icon-bar"></span> <span -->
+<!-- 					class="icon-bar"></span> -->
+<!-- 			</button> -->
+<!-- 			<a class="navbar-brand" href="#/">Módulo de solicitação</a> -->
+<!-- 		</div> -->
+
+<!-- 		<div class="collapse navbar-collapse" -->
+<!-- 			id="bs-example-navbar-collapse-1"> -->
+<!-- 			<ul class="nav navbar-nav"> -->
+<!-- 				<li class="dropdown"><a href="" class="dropdown-toggle" -->
+<!-- 					data-toggle="dropdown" role="button" aria-haspopup="true" -->
+<!-- 					aria-expanded="false" ng-if="vm.user.isAdmin">Usuários <span class="caret"></span></a> -->
+<!-- 					<ul class="dropdown-menu"> -->
+<!-- 						<li><a href="#/allUsers">Todos os usuários</a></li> -->
+<!-- 						<li role="separator" class="divider"></li> -->
+<!-- 						<li><a href="#/register">Cadastrar usuários</a></li>						 -->
+<!-- 					</ul></li> -->
+<!-- 				<li class="dropdown"><a href="" class="dropdown-toggle" -->
+<!-- 					data-toggle="dropdown" role="button" aria-haspopup="true" -->
+<!-- 					aria-expanded="false" ng-if="vm.user.isAdmin">Perfis<span class="caret"></span></a> -->
+<!-- 					<ul class="dropdown-menu"> -->
+<!-- 						<li><a href="#/allProfiles">Todos os perfis</a></li> -->
+<!-- 						<li role="separator" class="divider"></li> -->
+<!-- 						<li><a href="#/newProfile">Cadastrar perfil</a></li>						 -->
+<!-- 					</ul></li> -->
+<!-- 				<li class="dropdown"><a href="" class="dropdown-toggle" -->
+<!-- 					data-toggle="dropdown" role="button" aria-haspopup="true" -->
+<!-- 					aria-expanded="false" ng-if="vm.user.isAdmin">Associar perfil<span class="caret"></span></a> -->
+<!-- 					<ul class="dropdown-menu"> -->
+<!-- 						<li><a href="#/allAssociations">Todas as associações</a></li> -->
+<!-- 						<li role="separator" class="divider"></li> -->
+<!-- 						<li><a href="#/newAssociation">Associar</a></li>						 -->
+<!-- 				</ul></li>				 -->
+<!-- 			</ul> -->
+<!-- 			<ul class="nav navbar-nav navbar-right"> -->
+<!-- 				<li class="dropdown"><a href="" class="dropdown-toggle" -->
+<!-- 					data-toggle="dropdown" role="button" aria-haspopup="true" -->
+<!-- 					aria-expanded="false" ng-if="!vm.user.isAdmin">Solicitações <span class="caret"></span></a> -->
+<!-- 					<ul class="dropdown-menu"> -->
+<!-- 						<li><a href="#/requestAssociation">Solicitar acesso</a></li> -->
+<!-- 						<li role="separator" class="divider"></li> -->
+<!-- 						<li><a href="#/requestDesassociation">Solicitar retirada de acesso</a></li>						 -->
+<!-- 					</ul></li> -->
+<!-- 				<li class="dropdown"><a href="" class="dropdown-toggle" -->
+<!-- 					data-toggle="dropdown" role="button" aria-haspopup="true" -->
+<!-- 					aria-expanded="false" ><i class="icon_profile"></i>{{vm.user.name}}<span class="caret"></span></a> -->
+<!-- 					<ul class="dropdown-menu"> -->
+<!-- 						<li><a href="#/changePassword"><i class="icon_key_alt"></i>Alterar senha</a></li> -->
+<!-- 						<li role="separator" class="divider"></li> -->
+<!-- 						<li><a href="#/login">Sair</a></li>						 -->
+<!-- 					</ul></li>								 -->
+<!-- 			</ul> -->
+<!-- 		</div> -->
+<!-- 	</div> -->
+<!-- </nav> -->
+</header>
+</html>

@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html ng-app="app" lang="pt-br">
+<head>
+<meta charset="utf-8">
+
+</head>
+<div ng-include="'navbar/navbar.view.html'"></div>
+<section id="main-content">
+	<section class="wrapper">
+		<div ng-class="{ 'alert': flash, 'alert-success': flash.type === 'success', 'alert-danger': flash.type === 'error' }" ng-if="flash" ng-bind="flash.message"></div>
+		<h3>Todas as associações:</h3>
+
+		<form class="form-inline">
+			<div class="form-group">
+				<label>Procurar</label> <input type="text" ng-model="procurar"
+					class="form-control" placeholder="Procurar...">
+			</div>
+		</form>
+		<div class="col-md-12">
+			<table class="table table-condensed">
+				<thead>
+					<tr>
+						<th>Usuário</th>
+						<th></th>
+					</tr>
+				</thead>
+				<tbody>
+					<tr
+						dir-paginate="association in vm.allAssociations|filter:procurar|itemsPerPage:10">
+						<td><h4>
+								<b>{{association.user.name}}</b>
+							</h4></td>
+						<td>
+							<table class="table table-striped table-condensed">
+								<thead>
+									<tr>
+										<th>Nome do perfil</th>.
+										<th>Tipo da permissão</th>
+										<th style="width: 20px;"></th>
+										<th style="width: 20px;"></th>
+									</tr>
+								</thead>
+								<tbody>
+									<tr ng-repeat="profile in association.profilePermissions">
+										<td>{{profile.profile.name}}</td>
+										<td>{{profile.permission.access}}</td>
+										<td><a
+											ng-click="vm.viewAssociation(association.user.login, profile.profile.id)"
+											class="btn btn-small btn-success">Visualizar</a></td>
+										<!-- 								<td><a ng-click="vm.editAssociation(association.user.login, profile.profile.id)" -->
+										<!-- 										class="btn btn-small btn-primary">Editar</a></td> -->
+										<td><a class="btn btn-small btn-danger" type="button"
+											ng-click="vm.deleteAssociation(association.user, profile)">Desassociar</a>
+										</td>
+								</tbody>
+							</table>
+						</td>
+					</tr>
+				</tbody>
+			</table>
+			<dir-pagination-controls max-size="5" boundary-links="true"></dir-pagination-controls>
+
+		</div>
+	</section>
+</section>
+</html>
