@@ -37,7 +37,7 @@
 			loadAllUsers();			
 			if ($routeParams.login) {
 				var user = {
-						login : $routeParams.login,
+						username : $routeParams.login,
 						isAdmin : false
 					};
 				
