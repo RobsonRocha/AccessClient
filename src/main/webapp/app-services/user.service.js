@@ -25,12 +25,8 @@
         
         function getAllUsers(user, callback) {
         	$http({
-            method : 'POST',
-            url : 'http://localhost:8080/AuthorizationServer/rest/allusers',
-            data : angular.toJson({name: user.name, login: user.login, password: user.password, admin: user.isAdmin }),
-            headers : {
-                'Content-Type' : 'application/json'
-            }
+            method : 'GET',
+            url : 'http://localhost:8080/AuthorizationServer/rest/allusers/'+user.username            
         }).then(function (response) {
         	if(response.data != "")
         		response.success = true;
@@ -63,7 +59,8 @@
             url : 'http://localhost:8080/AuthorizationServer/rest/user/createuser',
             data : angular.toJson({name: user.name, login: user.login, password: user.password, admin: user.isAdmin }),
             headers : {
-                'Content-Type' : 'application/json'
+                'Content-Type' : 'application/json',
+                'charset' : 'UTF-8'
             }
         }).then(function (response) {
         	if(response.data != "")
@@ -78,11 +75,12 @@
         
         function updateUser(user, callback) {
         	$http({
-                method : 'POST',
+                method : 'PUT',
                 url : 'http://localhost:8080/AuthorizationServer/rest/user/updateuser',
                 data : angular.toJson({name: user.name, login: user.login, password: user.password, admin: user.admin }),
                 headers : {
-                    'Content-Type' : 'application/json'
+                    'Content-Type' : 'application/json',
+                    'charset' : 'UTF-8'
                 }
             }).then(function (response) {
             	if(response.data != "")
@@ -97,11 +95,12 @@
         
         function deleteUser(user, callback) {
         	$http({
-                method : 'POST',
+                method : 'DELETE',
                 url : 'http://localhost:8080/AuthorizationServer/rest/user/deleteuser',
                 data : angular.toJson({name: user.name, login: user.login, password: user.password, admin: user.admin }),
                 headers : {
-                    'Content-Type' : 'application/json'
+                    'Content-Type' : 'application/json',
+                    'charset' : 'UTF-8'
                 }
             }).then(function (response) {
             	if(response.data != "")
@@ -116,11 +115,12 @@
         
         function changePassword(user, callback) {
         	$http({
-            method : 'POST',
+            method : 'PUT',
             url : 'http://localhost:8080/AuthorizationServer/rest/user/changepassword',
             data : angular.toJson({name: user.name, login: user.username, password: user.authdata, admin: user.isAdmin }),
             headers : {
-                'Content-Type' : 'application/json'
+                'Content-Type' : 'application/json',
+                'charset' : 'UTF-8'
             }
         }).then(function (response) {
         	if(response.data != "")

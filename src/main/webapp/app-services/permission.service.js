@@ -73,7 +73,8 @@
             url : 'http://localhost:8080/AuthorizationServer/rest/permission/createpermission',
             data : angular.toJson({profile:{name: permissionProfile.profileName}, permission : {id : permission.id, access: permission.access}}),
             headers : {
-                'Content-Type' : 'application/json'
+                'Content-Type' : 'application/json',
+                'charset' : 'UTF-8'
             }
         }).then(function (response) {
         	if(response.data != "")
@@ -103,11 +104,12 @@
         
         function updateProfile(permissionProfile, callback) {
         	$http({
-            method : 'POST',
+            method : 'PUT',
             url : 'http://localhost:8080/AuthorizationServer/rest/permission/updatepermission',
             data : angular.toJson({profile:{id: permissionProfile.profile.id, name: permissionProfile.profile.name}, permission : {id : permissionProfile.permission.id, access: permissionProfile.permission.access}}),
             headers : {
-                'Content-Type' : 'application/json'
+                'Content-Type' : 'application/json',
+                'charset' : 'UTF-8'
             }
         }).then(function (response) {
         	if(response.data != "")
@@ -122,14 +124,15 @@
         
         function deleteProfile(permissionProfile, callback) {
         	$http({
-            method : 'POST',
+            method : 'DELETE',
             url : 'http://localhost:8080/AuthorizationServer/rest/permission/deletepermission',
             data : angular.toJson({profile:{id: permissionProfile.profile.id, name: permissionProfile.profile.name}, permission : {id : permissionProfile.permission.id, access: permissionProfile.permission.access}}),
             headers : {
-                'Content-Type' : 'application/json'
+                'Content-Type' : 'application/json',
+                'charset' : 'UTF-8'
             }
         }).then(function (response) {
-        	if(response.data != "")
+        	if(response.status == 200)
         		response.success = true;
         	else{
         		response.success = false;
@@ -141,12 +144,8 @@
         
         function getAllAssociations(user, callback) {
         	$http({
-            method : 'POST',
-            url : 'http://localhost:8080/AuthorizationServer/rest/permission/alluserpermissions',
-            data : angular.toJson({name: user.name, login: user.username, password: user.password, admin: user.isAdmin }),
-            headers : {
-                'Content-Type' : 'application/json'
-            }
+            method : 'GET',
+            url : 'http://localhost:8080/AuthorizationServer/rest/permission/alluserpermissions/'+user.username
         }).then(function (response) {
         	if(response.data != "")
         		response.success = true;
@@ -160,11 +159,12 @@
         
         function updatePermission(userProfilePermission, callback) {
         	$http({
-            method : 'POST',
+            method : 'PUT',
             url : 'http://localhost:8080/AuthorizationServer/rest/permission/rest/permission/associatepermission',
             data : angular.toJson({profile:{id: permissionProfile.profile.id, name: permissionProfile.profile.name}, permission : {id : permissionProfile.permission.id, access: permissionProfile.permission.access}}),
             headers : {
-                'Content-Type' : 'application/json'
+                'Content-Type' : 'application/json',
+                'charset' : 'UTF-8'
             }
         }).then(function (response) {
         	if(response.data != "")
@@ -179,14 +179,15 @@
         
         function desassociate(user, profilePermission, callback) {
         	$http({
-            method : 'POST',
+            method : 'DELETE',
             url : 'http://localhost:8080/AuthorizationServer/rest/permission/desassociatepermission',
             data : angular.toJson({user:{login: user.login, name: user.name, admin: user.admin}, profilePermissions : [{ profile:{id : profilePermission.profile.id, name: profilePermission.profile.name}, permission:{id: profilePermission.permission.id, access: profilePermission.permission.access}}]}),
             headers : {
-                'Content-Type' : 'application/json'
+                'Content-Type' : 'application/json',
+                'charset' : 'UTF-8'
             }
         }).then(function (response) {
-        	if(response.data != "")
+        	if(response.status == 200)
         		response.success = true;
         	else{
         		response.success = false;
@@ -206,7 +207,8 @@
             url : 'http://localhost:8080/AuthorizationServer/rest/permission/associatepermission',
             data : angular.toJson(userProfilePermission),            		
             headers : {
-                'Content-Type' : 'application/json'
+                'Content-Type' : 'application/json',
+                'charset' : 'UTF-8'
             }
         }).then(function (response) {
         	if(response.data != "")
@@ -229,7 +231,8 @@
             url : 'http://localhost:8080/AuthorizationServer/rest/permission/associatepermission',
             data : angular.toJson(userProfilePermission),            		
             headers : {
-                'Content-Type' : 'application/json'
+                'Content-Type' : 'application/json',
+                'charset' : 'UTF-8'
             }
         }).then(function (response) {
         	if(response.data != "")
@@ -248,14 +251,15 @@
         			profilePermissions : profilePermissions
         	};
         	$http({
-            method : 'POST',
+            method : 'DELETE',
             url : 'http://localhost:8080/AuthorizationServer/rest/permission/desassociatepermission',
             data : angular.toJson(userProfilePermission),
             headers : {
-                'Content-Type' : 'application/json'
+                'Content-Type' : 'application/json',
+                'charset' : 'UTF-8'
             }
         }).then(function (response) {
-        	if(response.data != "")
+        	if(response.status == 200)
         		response.success = true;
         	else{
         		response.success = false;
@@ -282,11 +286,12 @@
         
         function deleteAssociateRequest(login, profilePermission, callback) {
         	$http({
-            method : 'POST',
+            method : 'DELETE',
             url : 'http://localhost:8080/AuthorizationServer/rest/user/deleterequestassociation/'+login,
             data : angular.toJson(profilePermission),
             headers : {
-                'Content-Type' : 'application/json'
+                'Content-Type' : 'application/json',
+                'charset' : 'UTF-8'
             }
         }).then(function (response) {
         	if(response.data != "")
@@ -316,11 +321,12 @@
         
         function deleteDesassociateRequest(login, profilePermission, callback) {
         	$http({
-            method : 'POST',
+            method : 'DELETE',
             url : 'http://localhost:8080/AuthorizationServer/rest/user/deleterequestdesassociation/'+login,
             data : angular.toJson(profilePermission),
             headers : {
-                'Content-Type' : 'application/json'
+                'Content-Type' : 'application/json',
+                'charset' : 'UTF-8'
             }
         }).then(function (response) {
         	if(response.data != "")
@@ -371,7 +377,8 @@
             url : 'http://localhost:8080/AuthorizationServer/rest/user/requestassociation/'+login,
             data : angular.toJson(profilePermissions),
             headers : {
-                'Content-Type' : 'application/json'
+                'Content-Type' : 'application/json',
+                'charset' : 'UTF-8'
             }
         }).then(function (response) {
         	if(response.data != "")
@@ -390,7 +397,8 @@
             url : 'http://localhost:8080/AuthorizationServer/rest/user/requestdesassociation/'+login,
             data : angular.toJson(profilePermissions),
             headers : {
-                'Content-Type' : 'application/json'
+                'Content-Type' : 'application/json',
+                'charset' : 'UTF-8'
             }
         }).then(function (response) {
         	if(response.data != "")
