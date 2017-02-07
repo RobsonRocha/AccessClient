@@ -11,7 +11,7 @@ Assim, o adminstrador receberá na sua tela principal as solicitações, tanto de a
 	
 O usuário comum somente tem acesso aos seus próprios perfis e aos pedidos de adesão ou desligamento.
 
-Como a ideia foi só mostrar o funcionamento das tecnologias, não foi criado nenhum banco de dados, ficando tudo em memória.
+Como a proposta foi só mostrar o funcionamento das tecnologias, não foi criado nenhum banco de dados, ficando tudo em memória.
  
 ## Linguagem
 
